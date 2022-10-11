@@ -3,13 +3,19 @@ from collections import deque
 
 def input():
   return sys.stdin.readline().rstrip()
+
+list=[]
 N = int(input())
-deq = deque(enumerate(input()))
+deq = deque(enumerate(map(int,input().split())))
 
 for i in range(N):
-    p = deq.pop()
-    print(p[0])
-    if int(p[1]) > 0:
-        deq.rotate(int(p[1])-1)
+    p = deq.popleft() #(0,x)부터 출력
+
+    list.append(p[0]+1) #풍선 번호 list에 입력
+    if p[1] > 0:
+        deq.rotate(((p[1])-1))
     else:
-        deq.rotate(-(int(p[1])-1))
+        deq.rotate((p[1]))
+
+print(' '.join(map(str, list))) #list int값 str바꿔서 ' '와 함께 출력
+  
