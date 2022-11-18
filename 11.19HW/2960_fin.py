@@ -9,6 +9,13 @@
 import sys
 input = sys.stdin.readline
 
-a,b = map(int,input().split())
-list = [false for i in range(a)]
-print(list)
+N, K = map(int, input().split())
+tmp = 0
+list = [True] * (N + 1)
+for i in range(2, N + 1):
+    for j in range(i, N + 1, i):
+        if list[j] != False:
+            list[j] = False
+            tmp += 1
+            if tmp == K:
+                print(j)
